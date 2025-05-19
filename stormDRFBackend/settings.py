@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 from celery import Celery
+import dj_database_url
 from decouple import config, Csv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -93,6 +94,9 @@ DATABASES = {
         "PORT": config("DB_PORT", default="5432"),
     }
 }
+
+if not DEBUG:
+    DATABASES["default"] = dj_database_url.parse(config("DATABASE_URL"))
 
 
 # Password validation
