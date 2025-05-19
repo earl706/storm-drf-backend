@@ -49,7 +49,7 @@ INSTALLED_APPS = [
 CELERY_BROKER_URL = "redis://localhost:6379/0"  # Redis broker URL
 if not DEBUG:
     CELERY_BROKER_URL = config("REDIS_URL")  # Redis broker URL
-CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_BACKEND = config("REDIS_URL")
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
 CELERY_ACCEPT_CONTENT = ["json"]
 CELERY_TASK_SERIALIZER = "json"
